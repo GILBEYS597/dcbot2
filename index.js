@@ -1,5 +1,13 @@
-import { Client, GatewayIntentBits, Collection, Routes } from "discord.js";
+import {
+  Client,
+  GatewayIntentBits,
+  Collection,
+  Routes,
+  Events,
+} from "discord.js";
 import path from "path";
+import { readdir } from "fs/promises";
+import { REST } from "@discordjs/rest";
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -16,12 +24,12 @@ const foldersPath = path.join(__dirname, "komutlar"); // path modülünü kullan
 const commandFolders = await readdir(foldersPath);
 
 for (const folder of commandFolders) {
-  const commandPath = path.join(foldersPath, folder);
+  const commandsPath = path.join(foldersPath, folder);
   const dir = await readdir(commandsPath);
   const commandFiles = dir.filter((file) => file.endsWith(".js"));
 
   for (const file of commandFiles) {
-    const filePath = path.file(commandsPath, file);
+    const filePath = path.join(commandsPath, file);
     const command = require(filePath).default;
 
     if ("data" in command && "execute" in command) {
