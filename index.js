@@ -50,7 +50,7 @@ const rest = new REST({ version: 10 }).setToken(process.env.DISCORD_TOKEN);
       { body: commands }
     );
 
-    console.log("slahs komutları yenilenmeye başladı.");
+    console.log("Slash komutları yenilenmeye başladı.");
   } catch (error) {
     console.error(error);
   }
