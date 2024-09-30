@@ -4,6 +4,7 @@ import {
   Collection,
   Routes,
   Events,
+  ActivityType,
 } from "discord.js";
 import path from "path";
 import { readdir } from "fs/promises";
@@ -14,6 +15,7 @@ const client = new Client({
 });
 
 client.once("ready", () => {
+  client.user.setActivity("👨‍💻 Developing...", { type: ActivityType.Playing });
   console.log("Bot is ready!");
 });
 
