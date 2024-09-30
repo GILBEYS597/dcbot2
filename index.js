@@ -40,7 +40,7 @@ for (const folder of commandFolders) {
 }
 
 const commands = client.commands.map((command) => command.data.toJSON());
-const rest = new REST({ verispn: 10 })().setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: 10 })().setToken(process.env.DISCORD_TOKEN);
 {
   try {
     console.log("Started refreshing application (/) commands.");
