@@ -10,7 +10,7 @@ export default {
     const start = performance.now();
     const msg = await interaction.reply({ content: "🔄 Ping hesaplanıyor...", fetchReply: true });
     const latency = performance.now() - start;
-    const { uptime, guilds } = interaction.client;
+    const { uptime, guilds, users } = interaction.client;
     const apiPing = interaction.client.ws.ping;
     const cpus = os.cpus();
     let idle = 0, total = 0;
@@ -29,7 +29,7 @@ export default {
         { name: "💻 CPU Modeli", value: cpus[0].model, inline: true },
         { name: "🧮 CPU Çekirdekleri", value: `${cpus.length} Çekirdek`, inline: true },
         { name: "📁 Sunucu Sayısı", value: `${guilds.cache.size}`, inline: true },
-        { name: "👥 Kullanıcı Sayısı", value: `${interaction.guild.memberCount}`, inline: true }
+        { name: "👥 Kullanıcı Sayısı", value: `${users.cache.size}`, inline: true }
       )
       .setTimestamp()
       .setFooter({ text: `Komutu kullanan: ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
