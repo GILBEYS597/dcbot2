@@ -10,6 +10,12 @@ import path from "path";
 import { readdir } from "fs/promises";
 import { REST } from "@discordjs/rest";
 
+const data = {
+    startTime: Date.now(),
+}
+
+Bun.write("./data.ayt", JSON.stringify(data));
+
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
 });
