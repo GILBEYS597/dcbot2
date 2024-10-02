@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import winston from "winston";
 import {
   Client,
@@ -11,6 +12,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { readdir, stat } from "fs/promises";
 
+// dotenv'i yapılandırma
+dotenv.config();
+
+// Değişkenlerin yüklendiğini doğrulamak için log ekleyin
+console.log("DISCORD_TOKEN:", process.env.DISCORD_TOKEN);
+console.log("CLIENT_ID:", process.env.CLIENT_ID);
+console.log("GUILD_ID:", process.env.GUILD_ID);
 
 // __dirname'i tanımlama
 const __filename = fileURLToPath(import.meta.url);
@@ -70,7 +78,7 @@ const loadEvents = async () => {
           event.default.execute(...args, client)
         );
       }
-      console.log(`🔸 Yüklendi: ${event.default.name}`);
+      console.log(`🔹 Yüklendi: ${event.default.name}`);
     } else {
       console.warn(`⚠️ Geçersiz event yapısı: ${filePath}`);
     }
