@@ -11,6 +11,10 @@ import {
 import path from "path";
 import { fileURLToPath } from "url";
 import { readdir, stat } from "fs/promises";
+import { connectToDatabase } from "./database/database";
+
+await connectToDatabase();
+
 
 // dotenv'i yapılandırma
 dotenv.config();
