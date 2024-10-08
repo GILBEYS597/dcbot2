@@ -4,9 +4,7 @@ export default {
       // Botun kendi mesajlarına yanıt vermemesi için kontrol
       if (message.author.bot) return;
 
-      // Mesaj içeriği "sa" ise yanıt ver
-      if (message.content.toLowerCase() === "sa") {
-        message.channel.send("as");
-      }
+      // Herhangi bir mesaj yazıldığında yanıt ver
+      message.channel.send("#FreeDiscord");
     },
   };

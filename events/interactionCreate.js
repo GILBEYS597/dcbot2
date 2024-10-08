@@ -11,10 +11,10 @@ export default {
         }
 
         try {
-            //logger.info(`Komut çalıştırılıyor: ${interaction.commandName}`);
+            logger.info(`Komut çalıştırılıyor: ${interaction.commandName}`);
             await command.execute(interaction);
         } catch (error) {
-            //logger.error(`Komut çalıştırılırken hata oluştu: ${interaction.commandName}`, error);
+            logger.error(`Komut çalıştırılırken hata oluştu: ${interaction.commandName}`, error);
             await interaction.reply({ content: "Komut çalıştırılırken bir hata oluştu.", ephemeral: true });
         }
     },

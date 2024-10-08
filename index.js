@@ -84,11 +84,11 @@ const loadEvents = async () => {
     if (event.default.name && event.default.execute) {
       if (event.default.once) {
         client.once(event.default.name, (...args) =>
-          event.default.execute(...args, client)
+          event.default.execute(...args, client, logger) // logger'ı buraya ekleyin
         );
       } else {
         client.on(event.default.name, (...args) =>
-          event.default.execute(...args, client)
+          event.default.execute(...args, client, logger) // logger'ı buraya ekleyin
         );
       }
       console.log(`🔹 Yüklendi: ${event.default.name}`);

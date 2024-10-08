@@ -1,0 +1,3 @@
+2024-10-08T23:53:48.591Z [info]: Komut çalıştırılıyor: sil
+2024-10-08T23:53:48.595Z [error]: Komut çalıştırılırken hata oluştu: sil PermissionsBitField is not defined
+2024-10-08T23:54:24.886Z [info]: Komut çalıştırılıyor: uptime

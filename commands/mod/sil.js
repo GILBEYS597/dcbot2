@@ -1,4 +1,4 @@
-import {SlashCommandBuilder} from "discord.js";
+import {SlashCommandBuilder, PermissionsBitField, EmbedBuilder} from "discord.js";
 
 export default {
     data: new SlashCommandBuilder()
@@ -28,11 +28,11 @@ export default {
     const amount = interaction.options.getInteger("miktar");
 
     try {
-        await interaction.channel.bulkDelete(amount);
+        await interaction.channel.bulkDelete(amount, true);
 
         const successEmbed = new EmbedBuilder()
          .setTitle("Mesajlar Silindi")
-         .setDescription("Mesajlar başarıyla silindi.")
+         .setDescription(`${amount} mesaj başarıyla silindi.`)
          .setColor("Green")
 
         await interaction.reply({
@@ -43,7 +43,7 @@ export default {
     } catch (error) {
         const hataEmbed = new EmbedBuilder()
           .setTitle("Bir hata oluştu")
-          .setDescription(`Bir hata oluştu:`)
+          .setDescription(`Bir hata oluştu: ${error.message}`)
           .setColor("Red")
 
         await interaction.reply({
