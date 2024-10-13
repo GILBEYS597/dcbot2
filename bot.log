@@ -4,3 +4,7 @@
 2024-10-08T23:56:24.940Z [info]: Komut çalıştırılıyor: sil
 2024-10-08T23:59:37.570Z [info]: Komut çalıştırılıyor: yasakla
 2024-10-09T00:01:16.729Z [info]: Komut çalıştırılıyor: yasakla
+2024-10-09T01:17:19.137Z [info]: Komut çalıştırılıyor: trivia
+2024-10-09T01:17:26.902Z [error]: Komut çalıştırılırken hata oluştu: trivia The reply to this interaction has already been sent or deferred.
+2024-10-09T01:23:17.569Z [info]: Komut çalıştırılıyor: trivia
+2024-10-09T01:23:20.155Z [error]: Komut çalıştırılırken hata oluştu: trivia The reply to this interaction has already been sent or deferred.

@@ -4,7 +4,9 @@ export default {
       // Botun kendi mesajlarına yanıt vermemesi için kontrol
       if (message.author.bot) return;
 
-      // Herhangi bir mesaj yazıldığında yanıt ver
-      message.channel.send("#FreeDiscord");
+      // Mesaj içeriği tam olarak "Yasak" ise yanıt ver
+      if (message.content.trim() === "Yasak") {
+        message.channel.send("#FreeDiscord");
+      }
     },
-  };
+};

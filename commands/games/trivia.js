@@ -3,11 +3,13 @@ import { SlashCommandBuilder } from "discord.js";
 const questions = [
   {
     question: "Dünyanın en yüksek dağı hangisidir?",
-    answer: "Everest"
+    options: ["A) K2", "B) Everest", "C) Kangchenjunga", "D) Lhotse"],
+    answer: "B"
   },
   {
     question: "Python programlama dilinin yaratıcısı kimdir?",
-    answer: "Guido van Rossum"
+    options: ["A) Dennis Ritchie", "B) Bjarne Stroustrup", "C) Guido van Rossum", "D) James Gosling"],
+    answer: "C"
   },
   // Daha fazla soru ekleyin
 ];
@@ -15,26 +17,32 @@ const questions = [
 export default {
   data: new SlashCommandBuilder()
     .setName("trivia")
-    .setDescription("Rastgele bir soru sorar."),
+    .setDescription("Sıralı bir şekilde şıklı sorular sorar."),
   async execute(interaction) {
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    const selectedQuestion = questions[randomIndex];
+    let score = 0;
 
-    await interaction.reply({
-      content: selectedQuestion.question,
-      fetchReply: true
-    });
-
-    const filter = response => {
-      return response.content.toLowerCase() === selectedQuestion.answer.toLowerCase() && response.author.id === interaction.user.id;
-    };
-
-    interaction.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] })
-      .then(collected => {
-        interaction.followUp(`Tebrikler, doğru cevap! 🎉`);
-      })
-      .catch(collected => {
-        interaction.followUp(`Üzgünüm, doğru cevap: ${selectedQuestion.answer}`);
+    for (const question of questions) {
+      const optionsText = question.options.join("\n");
+      await interaction.reply({
+        content: `${question.question}\n${optionsText}`,
+        fetchReply: true
       });
-  }
+
+      const filter = response => {
+        return response.author.id === interaction.user.id;
+      };
+
+      const collected = await interaction.channel.awaitMessages({ filter, max: 1, time: 60000, errors: ['time'] })
+        .catch(() => null);
+
+      if (collected && collected.first().content.toUpperCase() === question.answer) {
+        score++;
+        await interaction.followUp("Doğru cevap! 🎉");
+      } else {
+        await interaction.followUp(`Yanlış cevap. Doğru cevap: ${question.answer}`);
+      }
+    }
+
+    await interaction.followUp(`Oyun bitti! Toplam doğru cevap sayınız: ${score}`);
+  },
 };
